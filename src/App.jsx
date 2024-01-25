@@ -14,12 +14,12 @@ const router = createBrowserRouter([
 
     children:[    // any children see parent
      {
-      path:'/home',
+      path:'home',
       element:<Home/>,
      },
      {
-      path:'/categories',
-      element:<Categories/>,
+      path:'categories',
+      element:<Categories/>
      },
      {
       path:'*',
@@ -33,12 +33,12 @@ const router = createBrowserRouter([
 
     children:[    // any children see parent
      {
-      path:'/home',
+      path:'home',
       element:<Homedashboard/>,
      },
      {
-      path:'/categories',
-      element:<CategoriesDashboard/>,
+      path:'categories',
+      element:<CategoriesDashboard/>
      },
     ]
   }
