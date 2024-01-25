@@ -1,15 +1,19 @@
 import React from 'react'
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
+import Layout from './Layouts/Layout.jsx';
+import Home from './component/web/Home/Home.jsx';
 
 const router = createBrowserRouter([
   {
-    path: "/",    // each end point put in object
-    element: <div>Hello world!</div>,
-  },
-  {
-    path:'/home',
-    element:<h2>Home Page</h2>
-  
+    path:'/',
+    element:<Layout/>,
+
+    children:[
+     {
+      path:'/home',
+      element:<Home/>,
+     }
+    ]
   }
 ]);
 
