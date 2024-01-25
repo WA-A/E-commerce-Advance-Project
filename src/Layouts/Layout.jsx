@@ -1,8 +1,8 @@
 import React from 'react'
-import Navbar from '../component/Navbar/Navbar'
-import Footer from '../component/Footer/Footer'
+import Navbar from '../component/web/Navbar/Navbar'
+import Footer from '../component/web/Footer/Footer'
 
-export default function Layout() {
+export default function Layout() {   // Here are the fixed parts of the admin, even when it changes, I change it once
   return (
    <>
    <Navbar/>
