@@ -3,9 +3,12 @@ import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import Layout from './Layouts/Layout.jsx';
 import Home from './component/web/Home/Home.jsx';
 import Categories from './component/web/Categories/Categories.jsx';
+import DashboardLayouts from './Layouts/DashboardLayouts.jsx';
+import Homedashboard from './component/dashboard/Home/Homedashboard.jsx';
+import CategoriesDashboard from './component/dashboard/Categories/CategoriesDashboard';
 
 const router = createBrowserRouter([
-  {
+  {      // Path User
     path:'/',
     element:<Layout/>,
 
@@ -17,6 +20,25 @@ const router = createBrowserRouter([
      {
       path:'/categories',
       element:<Categories/>,
+     },
+     {
+      path:'*',
+      element:<h2>Page not Found</h2>,
+     },
+    ]
+  },
+  {      // Path Admin
+    path:'/dashboard',
+    element:<DashboardLayouts/>,
+
+    children:[    // any children see parent
+     {
+      path:'/home',
+      element:<Homedashboard/>,
+     },
+     {
+      path:'/categories',
+      element:<CategoriesDashboard/>,
      },
     ]
   }
