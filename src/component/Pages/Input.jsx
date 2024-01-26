@@ -1,11 +1,12 @@
 import React from 'react'
 
-export default function Input({type='text',id,name,title,value,onChange}) {
+export default function Input({type='text',id,name,title,value,onChange,errors}) {
   return (
     <>
     <div className='input-group mb-3'>
         <label htmlFor={id}>{title}</label>
         <input type={type} name={name} className='form-control' value={value} id={id} onChange={onChange}/>
+        {errors[name]&&<p>{errors[name]}</p>}
     </div>
     </>
   )

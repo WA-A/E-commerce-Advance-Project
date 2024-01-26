@@ -14,7 +14,20 @@ export default function Register() {
         },
         onSubmit:values=>{
           console.log(values);
-        } 
+        },
+        validate:values=>{
+          let errors={};
+          if(!values.userName){
+            errors.userName="user name not Required"
+          }
+          if(!values.email){
+            errors.email="user email not Required"
+          }
+          if(!values.password){
+            errors.password="user password not Required"
+          }
+          return errors;
+        }
       });
       
       
@@ -44,7 +57,15 @@ export default function Register() {
   ];
 
   const renderinputsRequired = inputsRequired.map( (input,index)=>
-      <Input type={input.type} id={input.id} name={input.name} title={input.title} value={input.value} key={index} onChange={formik.handleChange}/>
+      <Input 
+      type={input.type} 
+      id={input.id} 
+      name={input.name} 
+      title={input.title} 
+      value={input.value} 
+      key={index} 
+      errors={formik.errors} 
+      onChange={formik.handleChange}/>
   )
 
   return (
