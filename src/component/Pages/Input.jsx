@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Input(type,id,name,title) {
+export default function Input({type='text',id,name,title}) {
   return (
     <>
     <div className='input-group mb-3'>

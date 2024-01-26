@@ -1,4 +1,5 @@
 import React from 'react'
+import Input from './../../Pages/Input';
 
 export default function Register() {
 
@@ -23,9 +24,17 @@ export default function Register() {
     },
   ];
 
+  const renderinputsRequired = inputsRequired.map( (input,index)=>
+      <Input type={input.type} id={input.id} name={input.name} title={input.title} key={index}/>
+  )
+
   return (
     <>
+    <div className='container'>
     <h2> Create Account</h2>
+    <form >{renderinputsRequired}</form>
+    </div>
+    
     </>
   )
 }
