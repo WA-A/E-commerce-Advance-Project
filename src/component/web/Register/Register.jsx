@@ -11,10 +11,13 @@ export default function Register() {
           email:'',
           password:'',
          
-        }
+        },
+        onSubmit:values=>{
+          console.log(values);
+        } 
       });
       
-     console.log(formik.values);
+      
 
   const inputsRequired =[
     {
@@ -48,7 +51,10 @@ export default function Register() {
     <>
     <div className='container'>
     <h2> Create Account</h2>
-    <form >{renderinputsRequired}</form>
+    <form onSubmit={formik.handleSubmit}>
+      {renderinputsRequired}
+      <input type='submit'/>
+      </form>
     </div>
     
     </>
