@@ -1,8 +1,12 @@
 import React from 'react'
 import Input from './../../Pages/Input';
 import {useFormik } from 'formik';
+import {ValidateSchema} from '../Validate/Validate.js'
 
 export default function Register() {
+
+    // const 
+
 
      const formik = useFormik(
       {
@@ -15,7 +19,7 @@ export default function Register() {
         onSubmit:values=>{
           console.log(values);
         },
-        validate:values=>{
+        validate:values=>{   // this check input is writeen or not just
           let errors={};
           if(!values.userName){
             errors.userName="user name not Required"
@@ -27,7 +31,10 @@ export default function Register() {
             errors.password="user password not Required"
           }
           return errors;
-        }
+        },
+        Validate:ValidateSchema,
+        
+
       });
       
       
@@ -54,6 +61,13 @@ export default function Register() {
       title:'User Password',
       value:formik.values.password,
     },
+    {
+      id:'image',
+      type:'file',
+      name:'image',
+      title:'User image',
+      
+    },
   ];
 
   const renderinputsRequired = inputsRequired.map( (input,index)=>
@@ -65,7 +79,7 @@ export default function Register() {
       value={input.value} 
       key={index} 
       errors={formik.errors} 
-      onChange={formik.handleChange}
+      onChange={formik.handleChange || formik.handleChange}
       onBlur={formik.handleBlur}
       touched={formik.touched}
       
