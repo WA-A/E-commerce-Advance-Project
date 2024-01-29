@@ -32,7 +32,7 @@ export default function Register() {
       
       
 
-  const inputsRequired =[
+  const inputsRequired =[   // Dynamic 
     {
       id:'username',
       type:'text',
@@ -65,7 +65,11 @@ export default function Register() {
       value={input.value} 
       key={index} 
       errors={formik.errors} 
-      onChange={formik.handleChange}/>
+      onChange={formik.handleChange}
+      onBlur={formik.handleBlur}
+      touched={formik.touched}
+      
+      />
   )
 
   return (
