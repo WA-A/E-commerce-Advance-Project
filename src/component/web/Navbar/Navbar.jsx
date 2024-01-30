@@ -35,8 +35,7 @@ export default function Navbar() {
         </a>
         <ul className="dropdown-menu ">
           <li><Link className="dropdown-item" to="/register">Register</Link></li>
-          <li><hr className="dropdown-divider" /></li>
-          <li><a className="dropdown-item" href="#">Login</a></li>
+          <li><Link className="dropdown-item" to="/login">Login</Link></li>
         </ul>
       </li>
         </ul>

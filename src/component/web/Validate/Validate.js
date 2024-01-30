@@ -5,3 +5,9 @@ import * as yup from 'yup';
     email:yup.string().required("user email Required").email,
     password:yup.string().required("user password Required").min(3,"must be at least 3 char").max(30,"must be at least 30 char"),
   });
+
+
+  export const LoginSchema = yup.object({   // schema for check length & min / max
+    email:yup.string().required("user email Required").email,
+    password:yup.string().required("user password Required").min(3,"must be at least 3 char").max(30,"must be at least 30 char"),
+  });

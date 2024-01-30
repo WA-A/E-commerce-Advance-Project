@@ -1,28 +1,25 @@
 import React from 'react'
 import Input from './../../Pages/Input';
 import {useFormik } from 'formik';
-import {ValidateSchema} from '../Validate/Validate.js'
+import {LoginSchema} from '../Validate/Validate.js'
 import axios from 'axios';
 import {toast} from 'react-toastify';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-export default function Register() {
-
+export default function Login() {
+    const Navigate = useNavigate(); 
      const formik = useFormik(
       {
         initialValues:{   // use value for name from inputsRequired
-          userName:'',
           email:'',
           password:'',
-         image:null,
+         
         },
         onSubmit:values=>{
           console.log(values);
         },
         validate:values=>{   // this check input is writeen or not just
           let errors={};
-          if(!values.userName){
-            errors.userName="user name not Required"
-          }
           if(!values.email){
             errors.email="user email not Required"
           }
@@ -31,24 +28,21 @@ export default function Register() {
           }
           return errors;
         },
-        Validate:ValidateSchema,
+        Validate:LoginSchema,
         
 
       });
       
-      const handelFieldChange = (event)=>{
-        formik.setFieldValue('image',event.target.files[0]); // put 0 in target and send confirm at email
-      }
-
+      
       const onSubmit = async users=>{
-        const formData = new FormData();
-        formData.append("userName",users.userName);
-        formData.append("email",users.email);
-        formData.append("password",users.password);
-        formData.append("image",users.image);
+        const {data} = await axios.post(`https://ecommerce-node4.vercel.app/auth/signin`,users);
+        console.log(data);
 
-        const {data} = await axios.post(`https://ecommerce-node4.vercel.app/auth/signup`,formData);
-        if(data.message="success"){
+        // The backend response contains a token that contains all the user information, and I control what information is sent to me
+        // use jwt , put token in endecode ,the decode convert to information 
+       
+        if(data.message="success"){  // if no userToken means user not login
+        localStorage.setItem("userToken",data.token); // save token in userToken
           formik.resetForm();
           toast.success('account created succesfully , please verify your email to login',{
             position: "top-right",
@@ -61,20 +55,13 @@ export default function Register() {
             theme: "dark",
             transition: Bounce,
           });
-
-        }
-        console.log(data);
+        Navigate('/home'); // user go home page
+       }
+        
       }
       
 
   const inputsRequired =[   // Dynamic 
-    {
-      id:'username',
-      type:'text',
-      name:'userName',
-      title:'User Name',
-      value:formik.values.userName,  //Means I take the value and store it in formik
-    },
     {
       id:'email',
       type:'email',
@@ -89,14 +76,6 @@ export default function Register() {
       title:'User Password',
       value:formik.values.password,
     },
-    {
-      id:'image',
-      type:'file',
-      name:'image',
-      title:'User image',
-      //value:formik.values.image      // no value for file
-      onchange:handelFieldChange    //  when change call handelFieldChange
-    },
   ];
 
   const renderinputsRequired = inputsRequired.map( (input,index)=>
@@ -108,7 +87,7 @@ export default function Register() {
       value={input.value} 
       key={index} 
       errors={formik.errors} 
-      onChange={input.onChange || formik.handleChange}    // input.onChange work with file 
+      onChange={formik.handleChange}    
       onBlur={formik.handleBlur}
       touched={formik.touched}
       
@@ -118,14 +97,14 @@ export default function Register() {
   return (
     <>
     <div className='container'>
-    <h2> Create Account</h2>
-    <form onSubmit={formik.handleSubmit} encType="multipart/form-data"> {/* To deal with the file */}
+    <h2> Login Page </h2>
+    <form onSubmit={formik.handleSubmit} >
       {renderinputsRequired}
 
-      <button type='submit' disabled={!formik.isValid}> Register </button>   {/* Inside formik there is isvalid , When input is error disabled button*/}
+      <button type='submit' disabled={!formik.isValid}> Login </button>   {/* Inside formik there is isvalid , When input is error disabled button*/}
       </form>
     </div>
     
     </>
   )
-}
+  }

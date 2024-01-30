@@ -7,6 +7,7 @@ import DashboardLayouts from './Layouts/DashboardLayouts.jsx';
 import Homedashboard from './component/dashboard/Home/Homedashboard.jsx';
 import CategoriesDashboard from './component/dashboard/Categories/CategoriesDashboard';
 import Register from './component/web/Register/Register.jsx';
+import Login from './component/web/Login/Login.jsx';
 
 const router = createBrowserRouter([
   {      // Path User
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     {
       path:'register',
       element:<Register/>,
+     },
+     {
+      path:'login',
+      element:<Login/>,
      },
      {
       path:'home',
