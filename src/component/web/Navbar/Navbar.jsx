@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Navbar() {
+export default function Navbar({user}) {
+  console.log(user);
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container">
@@ -34,8 +35,16 @@ export default function Navbar() {
           Dropdown
         </a>
         <ul className="dropdown-menu ">
+       {!user?    // If there is no username, the page will consist of login
+       <>
           <li><Link className="dropdown-item" to="/register">Register</Link></li>
           <li><Link className="dropdown-item" to="/login">Login</Link></li>
+          </>:  // else the page will consist of profile
+          <>
+           <li><Link className="dropdown-item" to="/register">Profile</Link></li>
+          <li><Link className="dropdown-item" to="/login">Logout</Link></li>
+          </>
+}
         </ul>
       </li>
         </ul>

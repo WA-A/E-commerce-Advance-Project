@@ -4,9 +4,9 @@ import {useFormik } from 'formik';
 import {LoginSchema} from '../Validate/Validate.js'
 import axios from 'axios';
 import {toast} from 'react-toastify';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+export default function Login({saveCurrentUser}) {
     const Navigate = useNavigate(); 
      const formik = useFormik(
       {
@@ -43,6 +43,7 @@ export default function Login() {
        
         if(data.message="success"){  // if no userToken means user not login
         localStorage.setItem("userToken",data.token); // save token in userToken
+        saveCurrentUser();
           formik.resetForm();
           toast.success('account created succesfully , please verify your email to login',{
             position: "top-right",
