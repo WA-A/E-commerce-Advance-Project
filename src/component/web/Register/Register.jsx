@@ -47,6 +47,22 @@ export default function Register() {
         formData.append("image",users.image);
 
         const {data} = await axios.post(`https://ecommerce-node4.vercel.app/auth/signup`,formData);
+        if(data.message="success"){
+          formik.resetForm();
+          toast.success('account created succesfully , please verify your email to login',{
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          });
+
+        }
+        console.log(data);
       }
       
 
