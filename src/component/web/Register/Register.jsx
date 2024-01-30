@@ -5,9 +5,6 @@ import {ValidateSchema} from '../Validate/Validate.js'
 
 export default function Register() {
 
-    // const 
-
-
      const formik = useFormik(
       {
         initialValues:{   // use value for name from inputsRequired
@@ -92,7 +89,7 @@ export default function Register() {
     <h2> Create Account</h2>
     <form onSubmit={formik.handleSubmit}>
       {renderinputsRequired}
-      <input type='submit'/>
+      <button type='submit' disabled={!formik.isValid}> Register </button>   {/* Inside formik there is isvalid , When input is error disabled button*/}
       </form>
     </div>
     
