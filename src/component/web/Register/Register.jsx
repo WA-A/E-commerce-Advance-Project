@@ -2,6 +2,7 @@ import React from 'react'
 import Input from './../../Pages/Input';
 import {useFormik } from 'formik';
 import {ValidateSchema} from '../Validate/Validate.js'
+import axios from 'axios';
 
 export default function Register() {
 
@@ -34,6 +35,19 @@ export default function Register() {
 
       });
       
+      const handelFieldChange = (event)=>{
+        formik.setFieldValue('image',event.target.files[0]); // put 0 in target and send confirm at email
+      }
+
+      const onSubmit = async users=>{
+        const formData = new FormData();
+        formData.append("userName",users.userName);
+        formData.append("email",users.email);
+        formData.append("password",users.password);
+        formData.append("image",users.image);
+
+        const {data} = await axios.post(`https://ecommerce-node4.vercel.app/auth/signup`,formData);
+      }
       
 
   const inputsRequired =[   // Dynamic 
@@ -63,7 +77,8 @@ export default function Register() {
       type:'file',
       name:'image',
       title:'User image',
-      
+      //value:formik.values.image      // no value for file
+      onchange:handelFieldChange    //  when change call handelFieldChange
     },
   ];
 
@@ -76,7 +91,7 @@ export default function Register() {
       value={input.value} 
       key={index} 
       errors={formik.errors} 
-      onChange={formik.handleChange || formik.handleChange}
+      onChange={input.onChange || formik.handleChange}    // input.onChange work with file 
       onBlur={formik.handleBlur}
       touched={formik.touched}
       
@@ -87,8 +102,9 @@ export default function Register() {
     <>
     <div className='container'>
     <h2> Create Account</h2>
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} encType="multipart/form-data"> {/* To deal with the file */}
       {renderinputsRequired}
+
       <button type='submit' disabled={!formik.isValid}> Register </button>   {/* Inside formik there is isvalid , When input is error disabled button*/}
       </form>
     </div>
