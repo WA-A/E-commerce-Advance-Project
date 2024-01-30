@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { RouterProvider} from "react-router-dom";
 import Layout from './Layouts/Layout.jsx';
 import Home from './component/web/Home/Home.jsx';
@@ -9,7 +9,7 @@ import CategoriesDashboard from './component/dashboard/Categories/CategoriesDash
 import Register from './component/web/Register/Register.jsx';
 import Login from './component/web/Login/Login.jsx';
 import { createBrowserRouter } from "react-router-dom";
-import { useEffect,useState } from "react";
+import { useEffect,useState} from 'react';
 import {jwtDecode} from 'jwt-decode';
 
 
@@ -21,11 +21,11 @@ const saveCurrentUser = ()=>{    // فنكشن يفك التشفير (Decrypts)
   setUser(decoded); // change on user
 }
 
-useEffect (()=>{ // first refresh get localstorge and Decrypts
+/*useEffect ( ()=>{ // first refresh get localstorge and Decrypts
 if(localStorage.getItem("userToken")){
   saveCurrentUser();
 }
-},[])
+},[])*/
 const router = createBrowserRouter([
   {      // Path User
     path:'/',
