@@ -9,7 +9,7 @@ import CategoriesDashboard from './component/dashboard/Categories/CategoriesDash
 import Register from './component/web/Register/Register.jsx';
 import Login from './component/web/Login/Login.jsx';
 import { createBrowserRouter } from "react-router-dom";
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import {jwtDecode} from 'jwt-decode';
 
 
@@ -29,7 +29,7 @@ if(localStorage.getItem("userToken")){
 const router = createBrowserRouter([
   {      // Path User
     path:'/',
-    element:<Layout />,
+    element:<Layout />,    // opariton send child to perant is state manegar
 
     children:[    // any children see parent
     {
