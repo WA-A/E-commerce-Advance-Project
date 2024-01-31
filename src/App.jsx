@@ -41,7 +41,8 @@ const router = createBrowserRouter([
       element:<Login saveCurrentUser={saveCurrentUser} />, // send function on page login
      },
      {
-      path:'home',
+      //=== path:'/', 
+      index:true,// means path is empty
       element:<Home/>,
      },
      {

@@ -19,7 +19,7 @@ const navigate = useNavigate();
         <ul className="navbar-nav m-auto mb-2 mb-lg-0">
          
           <li className="nav-item">
-            <a className="nav-link" href="#">Home</a>
+            <Link className="nav-link" to="/">Home</Link>
           </li>
 
 
