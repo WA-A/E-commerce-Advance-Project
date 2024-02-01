@@ -24,7 +24,7 @@ const navigate = useNavigate();
 
 
           <li className="nav-item">
-            <a className="nav-link" href="#">Categories</a>
+            <Link className="nav-link" to="/categories">Categories</Link>
           </li>
 
 
