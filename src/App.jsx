@@ -11,6 +11,7 @@ import Login from './component/web/Login/Login.jsx';
 import { createBrowserRouter } from "react-router-dom";
 import { useEffect,useState} from 'react';
 import {jwtDecode} from 'jwt-decode';
+import CategoriesDetails from './component/web/Categories/CategoriesDetails';
 
 
 // when user signin must change register to profile so send {user} to navbar by layout
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
      {
       path:'categories',
       element:<Categories/>
+     },
+     {
+      path:'products/categories/:categoriesID',
+      element:<CategoriesDetails/>
      },
      {
       path:'*',
