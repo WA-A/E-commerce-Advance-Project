@@ -5,15 +5,15 @@ import { useParams } from 'react-router-dom';
 
 export default function CategoriesDetails() {
   
-    const {categoriesId} = useParams;
+    const {categoryId} = useParams;
 
   const getCategoriesDetails = async ()=>{
      
-      const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/products/category/${categoriesId}`);
+      const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/products/category/${categoryId}`);
       return data.products;
     
   }
-  const {data,isLoading}=useQuery('categories_details',getCategoriesDetails); // web_categories is name cash
+  const {data,isLoading}=useQuery('categories_details',getCategoriesDetails); 
 
   if (isLoading){
     return <h2>Loading....</h2>
@@ -24,10 +24,10 @@ export default function CategoriesDetails() {
   return (
     <>
     <div className='products'>
-    {data.length?data.map( (products)=>
-      <div className='products' key={products._id}>
-        <img src={products.image.secure_url}/>
-        <h2>{products.name}</h2>
+    {data.length?data.map( (product)=>
+      <div className='products' key={product._id}>
+        <img src={product.image.secure_url}/>
+        <h2>{product.name}</h2>
         </div>
         
       
