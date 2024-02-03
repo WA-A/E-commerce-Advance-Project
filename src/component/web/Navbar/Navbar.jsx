@@ -32,6 +32,9 @@ const navigate = useNavigate();
           <a className="nav-link" href="#">Products</a>
         </li>
        
+        <li className="nav-item">                 {/*{user&&} */}
+          <Link className="nav-link" to="/cart">Cart</Link> 
+          </li>
        
         </ul>
         <ul className="navbar-nav">
