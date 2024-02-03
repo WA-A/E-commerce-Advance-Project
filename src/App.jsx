@@ -15,6 +15,10 @@ import CategoriesDetails from './component/web/Categories/CategoriesDetails';
 import Cart from './component/web/Cart/Cart.jsx';
 import { CartContextProvider } from './component/web/Context/Cart.jsx';
 import {UserContexProvider} from './component/web/Context/User.jsx';
+import Profile from './component/web/Profile/Profile.jsx';
+import Guard from './component/web/Guard/Guard';
+import UserContent from './component/web/Profile/UserContent.jsx';
+import UserInfo from './component/web/Profile/UserInfo.jsx';
 
 
 // when user signin must change register to profile so send {user} to navbar by layout
@@ -48,6 +52,23 @@ const router = createBrowserRouter([
       //=== path:'/', 
       index:true,// means path is empty
       element:<Home/>,
+     },
+     {
+      path:'profile',
+      element:
+      <Guard>
+        <Profile/>
+      </Guard>,
+      children:[
+        {
+          path:'info',
+          element:<UserInfo/>
+        },
+        {
+          path:'content',
+          element:<UserContent/>
+        }
+      ]
      },
      {
       path:'categories',
