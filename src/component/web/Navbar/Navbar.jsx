@@ -29,7 +29,7 @@ const navigate = useNavigate();
 
 
           <li className="nav-item">
-          <a className="nav-link" href="#">Products</a>
+          <Link className="nav-link" href="/product">Products</Link>
         </li>
        
         <li className="nav-item">                 {/*{user&&} */}
