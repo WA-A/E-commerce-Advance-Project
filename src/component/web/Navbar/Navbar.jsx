@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { UserContex } from '../Context/User';
 
-export default function Navbar({user,setUser}) {
+export default function Navbar() {
+  let {UserToken} = useContext(UserContex);
 const navigate = useNavigate();
   const logout =()=>{
     localStorage.removeItem('userToken');
-     setUser(null); // delete information for user
+     //setUser(null); // delete information for user
     navigate('/home');
   }
   return (
@@ -32,10 +34,10 @@ const navigate = useNavigate();
           <Link className="nav-link" href="/product">Products</Link>
         </li>
        
-        <li className="nav-item">                 {/*{user&&} */}
+        {UserToken? (<li className="nav-item">                 {/*{user&&} */}
           <Link className="nav-link" to="/cart">Cart</Link> 
           </li>
-       
+        ) : null}
         </ul>
         <ul className="navbar-nav">
         <li className="nav-item dropdown">
@@ -43,16 +45,16 @@ const navigate = useNavigate();
           Dropdown
         </a>
         <ul className="dropdown-menu ">
-       {!user?    // If there is no username, the page will consist of login
+       {UserToken == null?    // If there is no username, the page will consist of login
        <>
           <li><Link className="dropdown-item" to="/register">Register</Link></li>
           <li><Link className="dropdown-item" to="/login">Login</Link></li>
-          </>:  // else the page will consist of profile
+          </>: (// else the page will consist of profile
           <>
            <li><Link className="dropdown-item" to="/register">Profile</Link></li>
           <li><Link className="dropdown-item" to="/login">Logout</Link></li>
           </>
-}
+)}          
         </ul>
       </li>
         </ul>
