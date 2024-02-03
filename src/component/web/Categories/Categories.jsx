@@ -1,9 +1,10 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useQuery } from 'react-query';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Link} from 'react-router-dom'
+import { CartContext } from '../Context/Cart';
 
 export default function Categories() {
 // Every time I loading, I send a request to the package and the speed slows down
@@ -16,6 +17,10 @@ export default function Categories() {
       return data;
     
   }
+
+const x = useContext(CartContext);
+console.log(x);
+
   const {data,isLoading}=useQuery('web_categories',getCategories); // web_categories is name cash
 
   if (isLoading){
