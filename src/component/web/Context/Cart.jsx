@@ -33,7 +33,24 @@ export function CartContextProvider({children}){   // children will Component us
         }
     }
 
-    return <CartContext.Provider value={{AddtoCartContext}} >
+    const GetCartContext = async () =>{
+        try{
+            const token = localStorage.getItem("userToken");
+            const {data} = await axios.GetCartContext(`${import.meta.env.VITE_API_URL}/cart`,
+            
+            {headers:{Authorization:`Tariq__${token}`}}
+            )
+            return data;
+        }
+                
+            
+        
+        catch(error){
+            return console(error);
+        }
+    }
+
+    return <CartContext.Provider value={{AddtoCartContext,GetCartContext}} >
         {children}
     </CartContext.Provider>;
 }
