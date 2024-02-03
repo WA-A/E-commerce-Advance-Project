@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState } from "react";
+import { createContext } from "react";
 
 export const CartContext = createContext(null);
 
@@ -50,7 +50,25 @@ export function CartContextProvider({children}){   // children will Component us
         }
     }
 
-    return <CartContext.Provider value={{AddtoCartContext,GetCartContext}} >
+    const RemoveItemCartContext = async () =>{
+        try{
+            const token = localStorage.getItem("userToken");
+            const {data} = await axios.GetCartContext(`${import.meta.env.VITE_API_URL}/cart/removeItem`,{productId}
+            ,
+            {headers:{Authorization:`Tariq__${token}`}}
+            )
+            return data;
+        }
+                
+            
+        
+        catch(error){
+            return console(error);
+            
+        }
+    }
+
+    return <CartContext.Provider value={{AddtoCartContext,GetCartContext,RemoveItemCartContext}} >
         {children}
     </CartContext.Provider>;
 }
