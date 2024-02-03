@@ -14,6 +14,7 @@ import {jwtDecode} from 'jwt-decode';
 import CategoriesDetails from './component/web/Categories/CategoriesDetails';
 import Cart from './component/web/Cart/Cart.jsx';
 import { CartContextProvider } from './component/web/Context/Cart.jsx';
+import {UserContexProvider} from './component/web/Context/User.jsx';
 
 
 // when user signin must change register to profile so send {user} to navbar by layout
@@ -87,9 +88,12 @@ const router = createBrowserRouter([
 export default function App() {
   const [user,setUser] = useState(null);   // means null is user nont signin
   return (
-    <CartContextProvider>  {/* as I can put it to component a specific level */}
-              <RouterProvider router={router} />
+    <UserContexProvider>
+        <CartContextProvider>  {/* as I can put it to component a specific level */}
+        <RouterProvider router={router} />
     </CartContextProvider>
+    </UserContexProvider>
+    
     
   )
 }

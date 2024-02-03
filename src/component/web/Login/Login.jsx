@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Input from './../../Pages/Input';
 import {useFormik } from 'formik';
 import {LoginSchema} from '../Validate/Validate.js'
 import axios from 'axios';
 import {toast} from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { UserContex } from '../Context/User.jsx';
 
-export default function Login({saveCurrentUser}) {
+export default function Login() {
+  let {setUserToken}=useContext(UserContex);
     const Navigate = useNavigate(); 
      const formik = useFormik(
       {
@@ -43,9 +45,9 @@ export default function Login({saveCurrentUser}) {
        
         if(data.message="success"){  // if no userToken means user not login
         localStorage.setItem("userToken",data.token); // save token in userToken
-        saveCurrentUser();
+        setUserToken(data.Token);
           formik.resetForm();
-          toast.success('account created succesfully , please verify your email to login',{
+          toast.success('login succesfully',{
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
