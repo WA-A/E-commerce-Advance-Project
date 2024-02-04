@@ -20,6 +20,8 @@ import Guard from './component/web/Guard/Guard';
 import UserContent from './component/web/Profile/UserContent.jsx';
 import UserInfo from './component/web/Profile/UserInfo.jsx';
 import SendCode from './component/web/Auth/SendCode.jsx';
+import Order from './component/web/Order/Order.jsx';
+import { OrderContextProvider } from './component/web/Context/Order.jsx';
 
 
 // when user signin must change register to profile so send {user} to navbar by layout
@@ -88,6 +90,10 @@ const router = createBrowserRouter([
       element:<Cart/>
      },
      {
+      path:'/prder',
+      element:<Order/>
+     },
+     {
       path:'*',
       element:<h2>Page not Found</h2>,
      },
@@ -106,7 +112,7 @@ const router = createBrowserRouter([
       path:'categories',
       element:<CategoriesDashboard/>
      },
-    ]
+    ] 
   }
 ]);
 
@@ -115,8 +121,10 @@ export default function App() {
   const [user,setUser] = useState(null);   // means null is user nont signin
   return (
     <UserContexProvider>
-        <CartContextProvider>  {/* as I can put it to component a specific level */}
+        <CartContextProvider>                  {/* as I can put it to component a specific level */}             
+       {/**<OrderContextProvider> </OrderContextProvider> */} 
         <RouterProvider router={router} />
+       
     </CartContextProvider>
     </UserContexProvider>
     
