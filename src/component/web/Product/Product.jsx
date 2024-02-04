@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
 import { CartContext } from '../Context/Cart.jsx';
+import { OrderContext } from '../Context/Order.jsx';
 
 export default function Product() {
     const {productId} = useParams;
     const {AddtoCartContext}=useContext(CartContext);
     const {incraseQuantity}=useContext(CartContext);
     const {decraseQuantity}=useContext(CartContext);
+    const {addtoOrderContext}=useContext(OrderContext);
 
     const getProduct = async ()=>{
        
@@ -19,6 +21,10 @@ export default function Product() {
 
     const AddtoCart = async (productId)=>{
       const res = await AddtoCartContext(productId);
+      console.log(productId);
+    }
+    const AddtoOrder = async (productId)=>{
+      const res = await addtoOrderContext(productId);
       console.log(productId);
     }
   
