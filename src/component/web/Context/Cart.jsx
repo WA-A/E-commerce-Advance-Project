@@ -1,10 +1,12 @@
 import axios from "axios";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const CartContext = createContext(null);
 
-export function CartContextProvider({children}){   // children will Component use it
 
+
+export function CartContextProvider({children}){   // children will Component use it
+    const [count,setCount] = useState([]);
     const AddtoCartContext = async (productId) =>{
         try{
             const token = localStorage.getItem("userToken");
@@ -40,6 +42,7 @@ export function CartContextProvider({children}){   // children will Component us
             
             {headers:{Authorization:`Tariq__${token}`}}
             )
+            setCount(++count.data);
             return data;
         }
                 
@@ -67,6 +70,8 @@ export function CartContextProvider({children}){   // children will Component us
             
         }
     }
+
+    const [CountCart,setCountCart] = useState(0);
 
     return <CartContext.Provider value={{AddtoCartContext,GetCartContext,RemoveItemCartContext}} >
         {children}
