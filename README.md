@@ -16,5 +16,5 @@ and each Categories user can access the products page, view its details and pict
 and through the product number, he can add it to the cart or delete it, 
 and the number of products in the cart appears and he can place an order.
 ##
-React libraries were used such as: formik\yup\Toast\jwt\react query\swiper\react-image-magnify and many more.
+React libraries were used such as: formik \ yup \ Toast \ jwt \ react query \ swiper \ react-image-magnify and many more.
 ​
