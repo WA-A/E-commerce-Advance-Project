@@ -5,11 +5,14 @@ import axios from "axios";
 export const OrderContext=createContext(null);
 
 export function OrderContextProvider({children}){
+
+    let [CountOrder,setCountOrder] = useState(0);
+
     const addtoOrderContext = async (ProudctId)=>{
     try{
         const token = localStorage.getItem("userToken");
         const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/order`, 
-        {headers:{Authorization:`Wasan_${token}`}});
+        {headers:{Authorization:`Tarig__${token}`}});
         return data;
 
     }
@@ -18,8 +21,21 @@ export function OrderContextProvider({children}){
     }
  }
 
+ const getOrderContext = async (ProudctId)=>{
+    try{
+        const token = localStorage.getItem("userToken");
+        const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/order`, 
+        {headers:{Authorization:`Tarig__${token}`}});
+        setCountOrder(data.CountOrder);
+        return data;
 
- return <OrderContext.Provider value={{addtoOrderContext}}>
+    }
+    catch(error){
+        console.log(error);
+    }
+ }
+
+ return <OrderContext.Provider value={{addtoOrderContextوgetOrderContext}}>
     {children}
  </OrderContext.Provider>
 }
