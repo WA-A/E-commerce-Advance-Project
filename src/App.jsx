@@ -19,6 +19,7 @@ import Profile from './component/web/Profile/Profile.jsx';
 import Guard from './component/web/Guard/Guard';
 import UserContent from './component/web/Profile/UserContent.jsx';
 import UserInfo from './component/web/Profile/UserInfo.jsx';
+import SendCode from './component/web/Auth/SendCode.jsx';
 
 
 // when user signin must change register to profile so send {user} to navbar by layout
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       path:'login',
       element:<Login saveCurrentUser={saveCurrentUser} />, // send function on page login
      },
+     {
+      path:'send',
+      element:<SendCode/>
+    },
      {
       //=== path:'/', 
       index:true,// means path is empty
