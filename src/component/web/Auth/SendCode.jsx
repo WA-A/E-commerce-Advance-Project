@@ -100,6 +100,7 @@ function SendCode(saveCurrentUser) {
 
 <button type='submit' disabled={!formik.isValid}> Login </button>
 
+        <Link to='/SendCode'>Reset Password</Link>
     </from>
    </div>
    </>

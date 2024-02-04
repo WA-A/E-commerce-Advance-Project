@@ -73,7 +73,7 @@ export function CartContextProvider({children}){   // children will Component us
 
     const [CountCart,setCountCart] = useState(0);
 
-    return <CartContext.Provider value={{AddtoCartContext,GetCartContext,RemoveItemCartContext}} >
+    return <CartContext.Provider value={{AddtoCartContext,GetCartContext,RemoveItemCartContext,count,setCount}} >
         {children}
     </CartContext.Provider>;
 }
