@@ -71,9 +71,39 @@ export function CartContextProvider({children}){   // children will Component us
         }
     }
 
+    const incraseQuantity= async (ProudctId)=>{
+        try{
+            const token = localStorage.geItem("userToken");
+            const {data}=await axios.patch(`${import.meta.env.VITE_API_URL}/cart/incraseQuantity`, {ProudctId}
+        ,{
+            headers:{Authorization:`Wasan_${token}`}
+            })
+            setQuantity(++quantity);
+            return data;
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+    
+    const decraseQuantity= async (ProudctId)=>{
+      try{
+          const token = localStorage.geItem("userToken");
+          const {data}=await axios.patch(`${import.meta.env.VITE_API_URL}/cart/decraseQuantity`, {ProudctId}
+      ,{
+          headers:{Authorization:`Wasan_${token}`}
+          })
+          setQuantity(--quantity);
+          return data;
+      }
+      catch(error){
+          console.log(error);
+      }
+    }
+
     const [CountCart,setCountCart] = useState(0);
 
-    return <CartContext.Provider value={{AddtoCartContext,GetCartContext,RemoveItemCartContext,count,setCount}} >
+    return <CartContext.Provider value={{AddtoCartContext,GetCartContext,RemoveItemCartContext,count,setCount,decraseQuantity,incraseQuantity}} >
         {children}
     </CartContext.Provider>;
 }

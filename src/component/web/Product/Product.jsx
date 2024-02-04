@@ -4,6 +4,8 @@ import { CartContext } from '../Context/Cart.jsx';
 export default function Product() {
     const {productId} = useParams;
     const {AddtoCartContext}=useContext(CartContext);
+    const {incraseQuantity}=useContext(CartContext);
+    const {decraseQuantity}=useContext(CartContext);
 
     const getProduct = async ()=>{
        
