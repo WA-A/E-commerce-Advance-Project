@@ -27,6 +27,7 @@ export function CartContextProvider({children}){   // children will Component us
                     transition: Bounce,
             });
         }
+        setCount(++count.data);
                 return data;
             
         }
@@ -42,7 +43,7 @@ export function CartContextProvider({children}){   // children will Component us
             
             {headers:{Authorization:`Tariq__${token}`}}
             )
-            setCount(++count.data);
+            
             return data;
         }
                 

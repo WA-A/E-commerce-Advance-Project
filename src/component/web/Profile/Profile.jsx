@@ -1,7 +1,8 @@
 import React from 'react'
+import { UserContex } from '../Context/User';
 
 export default function Profile() {
-    const {userData,Loading} = useContext(UserContex);
+    const {userData,Loading} = useContext(UserContext);
     if(Loading){
         return <h2>...Loading</h2>
     }
