@@ -85,7 +85,7 @@ import { useNavigate } from 'react-router-dom';
     value={input.value}
     key={index}
     errors={formik.errors}
-    onChange={ input.onChange || formik.handleChange } //input from image becuase file no vlaue
+    onChange={ input.onChange  } 
     onBlur={formik.handleBlur}
     touched={formik.touched}
     />
@@ -95,7 +95,7 @@ import { useNavigate } from 'react-router-dom';
    <>
    <div className='container'>
     <h2>Update user</h2>
-    <from onSubmit={formik.handleSubmit} encType="multipart/from-data">
+    <from onSubmit={formik.handleSubmit} >
         {renderInputs}
 
 <button type='submit' disabled={!formik.isValid}> Register </button>

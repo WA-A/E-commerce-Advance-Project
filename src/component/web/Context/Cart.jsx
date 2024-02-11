@@ -76,7 +76,7 @@ export function CartContextProvider({children}){   // children will Component us
             const token = localStorage.geItem("userToken");
             const {data}=await axios.patch(`${import.meta.env.VITE_API_URL}/cart/incraseQuantity`, {ProudctId}
         ,{
-            headers:{Authorization:`Wasan_${token}`}
+            headers:{Authorization:`Tariq__${token}`}
             })
             setQuantity(++quantity);
             return data;
@@ -91,7 +91,7 @@ export function CartContextProvider({children}){   // children will Component us
           const token = localStorage.geItem("userToken");
           const {data}=await axios.patch(`${import.meta.env.VITE_API_URL}/cart/decraseQuantity`, {ProudctId}
       ,{
-          headers:{Authorization:`Wasan_${token}`}
+          headers:{Authorization:`Tariq__${token}`}
           })
           setQuantity(--quantity);
           return data;
@@ -101,7 +101,7 @@ export function CartContextProvider({children}){   // children will Component us
       }
     }
 
-    const [CountCart,setCountCart] = useState(0);
+    //const [CountCart,setCountCart] = useState(0);
 
     return <CartContext.Provider value={{AddtoCartContext,GetCartContext,RemoveItemCartContext,count,setCount,decraseQuantity,incraseQuantity}} >
         {children}

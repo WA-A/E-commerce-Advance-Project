@@ -8,7 +8,7 @@ export function OrderContextProvider({children}){
 
     let [CountOrder,setCountOrder] = useState(0);
 
-    const addtoOrderContext = async (ProudctId)=>{
+    const CreateOrderContext = async (ProudctId)=>{
     try{
         const token = localStorage.getItem("userToken");
         const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/order`, 
@@ -35,7 +35,7 @@ export function OrderContextProvider({children}){
     }
  }
 
- return <OrderContext.Provider value={{addtoOrderContextوgetOrderContext}}>
+ return <OrderContext.Provider value={{CreateOrderContext,getOrderContext}}>
     {children}
  </OrderContext.Provider>
 }
